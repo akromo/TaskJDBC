@@ -19,15 +19,6 @@ public class UserServiceTest {
     private final String testLastName = "Ivanov";
     private final byte testAge = 5;
 
-
-    @Test
-    public void shouldGetJdbcConnection() throws SQLException {
-        try(Connection connection = Util.getNewConnection()) {
-            assertTrue(connection.isValid(1));
-            assertFalse(connection.isClosed());
-        }
-    }
-
     @Test
     public void dropUsersTable() {
         try {
