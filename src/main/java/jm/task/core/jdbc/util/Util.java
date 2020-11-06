@@ -2,11 +2,6 @@ package jm.task.core.jdbc.util;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 import jm.task.core.jdbc.model.User;
-import org.hibernate.Hibernate;
-import org.hibernate.HibernateException;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.dialect.MySQLDialect;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 
@@ -15,7 +10,6 @@ import javax.persistence.spi.ClassTransformer;
 import javax.persistence.spi.PersistenceUnitInfo;
 import javax.persistence.spi.PersistenceUnitTransactionType;
 import javax.sql.DataSource;
-
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.net.URL;
@@ -33,7 +27,7 @@ public class Util {
             archiverPersistenceUnitInfo(),
             new HashMap<String, Object>() {{
                 put("JPA_JDBC_DRIVER", "org.gjt.mm.mysql.Driver");
-                put("JPA_JDBC_URL", "jdbc:mysql://localhost:3306/jdbc_f?useSSL=false"); //jdbc_f?useSSL=false
+                put("JPA_JDBC_URL", "jdbc:mysql://localhost:3306/jdbc_f"); //jdbc_f?useSSL=false
                 put("DIALECT", MySQLDialect.class);
                 put("SHOW_SQL", true);
                 put("QUERY_STARTUP_CHECKING", false);
@@ -51,68 +45,12 @@ public class Util {
         return emf;
     }
 
-    //    public static final SessionFactory sessionFactory;
-
-//    private static DataSource dataSource() {
-//        final MysqlDataSource dataSource = new MysqlDataSource();
-//        dataSource.setDatabaseName("jdbc_f");
-//        dataSource.setUser("root");
-//        dataSource.setPassword("password");
-//        return dataSource;
-//    }
-
-//    private static Properties hibernateProperties() {
-//        final Properties properties = new Properties();
-//
-//        properties.put("hibernate.hbm2ddl.auto", "update");
-//        properties.put("hibernate.show_sql", true);
-//        properties.put("hibernate.connection.driver_class", "org.gjt.mm.mysql.Driver");
-//        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-//        properties.put("hibernate.connection.datasource", dataSource());
-//
-//        return properties;
-//    }
-
-
-//    static {
-//        try {
-//            sessionFactory = new Configuration().addProperties(hibernateProperties()).configure().buildSessionFactory();
-//        }catch (HibernateException e){
-//            System.out.println("new Configuration().configure().buildSessionFactory() throws "+e);
-//            throw e;
-//        }
-//
-//    }
-//
-//    public static SessionFactory getSessionFactory(){
-//        return  sessionFactory;
-//    }
-
     public static Connection getNewConnection() throws SQLException {
         String url = "jdbc:mysql://localhost:3306/jdbc_f?useSSL=false";
         String user = "root";
         String passwd = "password";
         return DriverManager.getConnection(url, user, passwd);
     }
-
-//    public static void build() {
-//        emf = new org.hibernate.jpa.HibernatePersistenceProvider().createContainerEntityManagerFactory(
-//                archiverPersistenceUnitInfo(),
-//                new HashMap<String, Object>() {{
-//                    put("JPA_JDBC_DRIVER", "org.gjt.mm.mysql.Driver");
-//                    put("JPA_JDBC_URL", "jdbc:mysql://localhost:3306/jdbc_f?useSSL=false"); //?useSSL=false
-//                    put("DIALECT", MySQLDialect.class);
-//                    put("SHOW_SQL", true);
-//                    put("QUERY_STARTUP_CHECKING", false);
-//                    put("GENERATE_STATISTICS", false);
-//                    put("USE_REFLECTION_OPTIMIZER", false);
-//                    put("USE_SECOND_LEVEL_CACHE", false);
-//                    put("USE_QUERY_CACHE", false);
-//                    put("USE_STRUCTURED_CACHE", false);
-//                    put("STATEMENT_BATCH_SIZE", 20);
-//                }}
-//        );
-//    }
 
     private static PersistenceUnitInfo archiverPersistenceUnitInfo() {
         return new PersistenceUnitInfo() {
@@ -215,7 +153,7 @@ public class Util {
         properties.put("hibernate.hbm2ddl.auto", "create");
         properties.put("hibernate.show_sql", true);
         properties.put("hibernate.connection.driver_class", "org.gjt.mm.mysql.Driver");
-        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         properties.put("hibernate.connection.datasource", dataSource());
 
         return properties;
