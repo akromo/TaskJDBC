@@ -2,12 +2,13 @@ package jm.task.core.jdbc;
 
 import jm.task.core.jdbc.dao.UserDao;
 import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
+import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
 
 
 public class Main {
     public static void main(String[] args) {
-        UserDao sh = new UserServiceImpl();
+        UserService sh = new UserServiceImpl();
         sh.createUsersTable();
         sh.saveUser("Vasya", "Ivanov", (byte) 30);
         sh.saveUser("Ivan", "Vasilev", (byte) 40);
