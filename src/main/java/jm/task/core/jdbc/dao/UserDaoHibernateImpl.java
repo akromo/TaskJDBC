@@ -5,8 +5,6 @@ import jm.task.core.jdbc.util.Util;
 import org.hibernate.Session;
 
 
-import javax.persistence.EntityManager;
-
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
