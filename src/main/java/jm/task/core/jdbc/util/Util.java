@@ -13,13 +13,13 @@ import java.util.*;
 
 
 public class Util {
-    private static SessionFactory factory = hibernateConfig();
+    private static SessionFactory factory = createSessionFactory();
 
     public static Session getSession() {
         return factory.openSession();
     }
 
-    public static SessionFactory hibernateConfig() {
+    public static SessionFactory createSessionFactory() {
         Properties properties = new Properties();
         properties.setProperty(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
         properties.setProperty(Environment.HBM2DDL_AUTO, "update");
