@@ -8,7 +8,7 @@ import org.hibernate.Session;
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
-    private Session session = Util.getSession();
+    private Session session = Util.getSession(); //test
 
     public UserDaoHibernateImpl() {
 
